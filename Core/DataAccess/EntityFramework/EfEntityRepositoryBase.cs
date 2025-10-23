@@ -1,5 +1,6 @@
 ﻿using Core.DataAcccess;
 using Core.Entities;
+using Core.Utilities.Results;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Core.DataAccess.EntityFramework
                 return Y.Set<TEntity>().SingleOrDefault(filter);
             }
         }
-
+        
       
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
@@ -60,7 +61,9 @@ namespace Core.DataAccess.EntityFramework
 
         }
 
-        
+       
+
+
 
         public void Update(TEntity X)
         {

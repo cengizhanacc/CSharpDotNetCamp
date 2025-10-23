@@ -1,16 +1,28 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
+using Entities.DTOs;
 
-//ProductTest();
-CategoryTest();
+ProductTest();
+//CategoryTest();
+
 static void ProductTest()
 {
-    ProductManager productManager = new ProductManager(new EfProductDal());
+    ProductManager x = new ProductManager(new EfProductDal());
 
-    foreach (var product in productManager.GetByUnitPrice(30, 120))
+    var result = x.GetProductDetails();
+    if (result.Success == true)
     {
-        Console.WriteLine(product.ProductName);
+        foreach (var y in result.Data)
+        {
+            Console.WriteLine(y.ProductName + "/" + y.CategoryName);
+        }
+
+    }
+    else
+    {
+        Console.WriteLine(result.Message);
     }
 }
 
@@ -22,3 +34,4 @@ static void CategoryTest()
         Console.WriteLine(y.CategoryName);
     }
 }
+
